@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tito_Store.View.About"
+             FlowDirection="LeftToRight"
+             Shell.FlyoutBehavior="Disabled"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             NavigationPage.HasNavigationBar="False"
+             Title="حول">
+    <Shell.TitleView>
+        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Primary}}"
+       Padding="0,0,20,0"
+       ColumnDefinitions="*">
+            <Label Text="معلومات المطور"
+            FontSize="Large"
+            FontFamily="Cairo-Black"
+            HorizontalTextAlignment="Center"
+            VerticalOptions="CenterAndExpand"
+            Grid.Column="1"/>
+        </Grid>
+    </Shell.TitleView>
+
+    <VerticalStackLayout Spacing="20" Padding="10">
+        
+        <BoxView 
+             Color="LightGray" HeightRequest="2" />
+        <Frame>
+            <VerticalStackLayout Spacing="10">
+                <Frame CornerRadius="50" HeightRequest="100" WidthRequest="100"  >
+                    <Image  Source="mory.jpg" HorizontalOptions="Center" HeightRequest="200" WidthRequest="200" />
+                </Frame>
+                <VerticalStackLayout>
+                    <Label Text="ENG: Mohammed Attia" FontFamily="Cairo-Medium"/>
+                    <Label Text="Mobile App" FontFamily="Cairo-Medium" />
+                    <Label Text="Contact : amirattiamohamed@gmail.com" FontFamily="Cairo-Medium" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </Frame>
+    </VerticalStackLayout>
+</ContentPage>

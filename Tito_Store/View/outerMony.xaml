@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tito_Store.View.outerMony"
+             FlowDirection="RightToLeft"
+             xmlns:outerMonyModels="clr-namespace:Tito_Store.viewModels"
+             Title="اموال بالخارج">
+    <ContentPage.BindingContext>
+        <outerMonyModels:MonyViewModels/>
+    </ContentPage.BindingContext>
+
+    <Shell.TitleView>
+        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"
+           Padding="0,0,20,0"
+           ColumnDefinitions="*">
+            <Label Text="اموال بالخارج"
+                FontAttributes="Bold"
+                FontFamily="Cairo-Black"
+                FontSize="Large"
+                TextColor="Black"
+                HorizontalTextAlignment="Center"
+                VerticalOptions="CenterAndExpand"
+                Grid.Column="1"/>
+        </Grid>
+    </Shell.TitleView>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="10">
+            <BoxView IsVisible="True" IsEnabled="True" Color="LightGray" HeightRequest="2"/>
+
+            <SearchBar Placeholder="البحث"
+                       Text="{Binding ClientNameSearch}"
+                       SearchCommand="{Binding SearchCommand}" 
+                       FontFamily="Cairo-Medium"/>
+                <!-- inputs -->
+            <HorizontalStackLayout Margin="0,20,0,0" HorizontalOptions="Center"  Spacing="10">
+                <Frame>
+                    <Entry Text="{Binding ClientName}" Placeholder="اسم العميل" FontFamily="Cairo-Medium"/>
+                </Frame>
+                <Frame>
+                    <Entry Text="{Binding ProductName}" WidthRequest="100" Placeholder="اسم المنتج" FontFamily="Cairo-Medium"/>
+                </Frame>
+                <Frame>
+                    <Entry Keyboard="Numeric" Text="{Binding OuterPrice}" Placeholder="السعر" FontFamily="Cairo-Medium"/>
+                </Frame>
+            </HorizontalStackLayout>
+            <!-- Add get All Updata -->
+            <HorizontalStackLayout Spacing="20">
+                <Button WidthRequest="170" Command="{Binding AddOuterCommand}" Text="اضافه" />
+                <Button WidthRequest="70" Command="{Binding GetOuterCommand}" Text="عرض الاشخاص" />
+                <Button WidthRequest="70" Command="{Binding UpdateDataCommand}" Text="تنزيل" />
+            </HorizontalStackLayout>
+            <BoxView Margin="0,20,0,20" IsVisible="True" IsEnabled="True" Color="LightGray" HeightRequest="2"/>
+
+            <!-- get all clients -->
+            <CollectionView x:Name="GetAllDatas" ItemsSource="{Binding Outer}" SelectionMode="Single" SelectionChanged="OnItemSelected">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BackgroundColor="#f3f6fb" HeightRequest="120" StrokeShape="RoundRectangle 10" Margin="0,0,0,10">
+                            <VerticalStackLayout Padding="10">
+                                <Label Text="{Binding Id}"/>
+                                <Label Text="{Binding ClientName}"/>
+                                <Label Text="{Binding ProductName}"/>
+                                <Label Text="{Binding Date}"/>
+                                <Label Text="{Binding outerPrice}"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            
+            <!-- get data for serach -->
+            <CollectionView x:Name="GetAllData"  ItemsSource="{Binding Name}" SelectionMode="Single" SelectionChanged="OnItemSelected">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BackgroundColor="#f3f6fb" HeightRequest="120" StrokeShape="RoundRectangle 10" Margin="0,0,0,10">
+                            <VerticalStackLayout Padding="10">
+                                <Label Text="{Binding Id}"/>
+                                <Label Text="{Binding ClientName}"/>
+                                <Label Text="{Binding ProductName}"/>
+                                <Label Text="{Binding Date}"/>
+                                <Label Text="{Binding outerPrice}"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

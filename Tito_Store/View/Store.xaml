@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:Tito_Store.viewModels"
+             x:Class="Tito_Store.View.Store">
+    <ContentPage.BindingContext>
+        <viewmodel:InventoryViewModels/>
+    </ContentPage.BindingContext>
+
+    <Shell.TitleView>
+        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"
+        Padding="0,0,20,0"
+        ColumnDefinitions="*">
+            <Label Text="المخزن"
+             FontAttributes="Bold"
+             FontFamily="Cairo-Black"
+             FontSize="Large"
+             TextColor="Black"
+             HorizontalTextAlignment="Center"
+             VerticalOptions="CenterAndExpand"
+             Grid.Column="1"/>
+        </Grid>
+    </Shell.TitleView>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="20">
+            <BoxView IsVisible="True" IsEnabled="True" Color="LightGray" HeightRequest="2"/>
+
+            <HorizontalStackLayout Spacing="5">
+                <Frame>
+                    <Entry TextColor="Black" Text="{Binding ProductName}" Placeholder="أسم المنتج" FontFamily="Cairo-Medium" />
+                </Frame>
+               
+                <Frame>
+                    <Entry TextColor="Black" Keyboard="Numeric" Text="{Binding Quantity}" Placeholder="كميه المنتج" FontFamily="Cairo-Medium" />
+                </Frame>
+
+            </HorizontalStackLayout>
+
+            <Frame>
+                <Entry TextColor="Black" Keyboard="Numeric" Text="{Binding Id}" Placeholder="حط ال ID لو بس عايز تحذف" FontFamily="Cairo-Medium" />
+
+            </Frame>
+
+
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                <Button Command="{Binding AddCommand}"  WidthRequest="120" Text="اضافه" FontFamily="Cairo-Medium" />
+                <Button Command="{Binding RemoveSalesCommand}" WidthRequest="100" Text="حذف" FontFamily="Cairo-Medium" />
+                <Button WidthRequest="100" Text="تعديل" FontFamily="Cairo-Medium" />
+            </HorizontalStackLayout>
+
+
+
+            <Button  Text="حساب المبيعات" FontFamily="Cairo-Medium" />
+
+
+            <Button Command="{Binding GetAllCommand}"  Text="عرض المنتجات" FontFamily="Cairo-Medium" />
+
+
+            <Grid Padding="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <CollectionView x:Name="GetAllDs" ItemsSource="{Binding Inventory}" SelectedItem="{Binding Id}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BackgroundColor="#f3f6fb" HeightRequest="100" StrokeShape="RoundRectangle 10" Margin="0,0,0,10">
+                                <VerticalStackLayout Padding="10">
+                                    <Label Text="{Binding ProductId}"/>
+                                    <Label Text="{Binding ProductName}"/>
+                                    <Label Text="{Binding Quantity}"/>
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+
+
+                <ActivityIndicator x:Name="activityIndicator"
+                 IsRunning="{Binding IsBusy}"
+                 IsVisible="{Binding IsBusy}"
+                 Color="Blue"
+                 VerticalOptions="Center"
+                 HorizontalOptions="Center"
+                 Grid.Row="0" />
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

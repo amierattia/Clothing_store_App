@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             FlowDirection="RightToLeft"
+             BackgroundColor="White"
+             Shell.FlyoutBehavior="Disabled"
+             x:Class="Tito_Store.MainPage">
+    <Shell.TitleView>
+        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"
+              Padding="0,0,20,0"
+              ColumnDefinitions="*">
+            <Label Text="الصفحه الرئيسيه"
+                   FontAttributes="Bold"
+                   FontFamily="Cairo-Black"
+                   FontSize="Large"
+                   TextColor="Black"
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="CenterAndExpand"
+                   Grid.Column="1"/>
+        </Grid>
+    </Shell.TitleView>
+    <ScrollView>
+
+        <VerticalStackLayout Padding="10" Spacing="10" >
+
+
+            <BoxView Color="LightGray" HeightRequest="2"  />
+
+
+            <ActivityIndicator Margin="0"  x:Name="activityIndicator"
+                HeightRequest="20"
+                Color="Blue"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="CenterAndExpand"      
+                  />
+            
+            
+            <Border BackgroundColor="#f3f6fb" HeightRequest="100" StrokeShape="RoundRectangle 10" Margin="0,0,0,10">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Border.GestureRecognizers>
+                <AbsoluteLayout Padding="10">
+                    <Image Source="order.png" HeightRequest="70"
+                           WidthRequest="70"
+                           AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,.5"/>
+                    <Label FontSize="Medium" AbsoluteLayout.LayoutFlags="PositionProportional"   FontFamily="Cairo-Black" Text="طلبيات" TextColor="Black" AbsoluteLayout.LayoutBounds="0,0.5"/>
+                </AbsoluteLayout>
+            </Border>
+            
+            <Border BackgroundColor="#f3f6fb" HeightRequest="100" StrokeShape="RoundRectangle 10" Margin="0,0,0,10">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                </Border.GestureRecognizers>
+                <AbsoluteLayout Padding="10">
+                    <Image Source="store.png" HeightRequest="70"
+                           WidthRequest="70"
+                           AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,.5"/>
+                    <Label FontSize="Medium"  FontFamily="Cairo-Black" Text="المخزن" TextColor="Black" 
+                            AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,.5"/>
+                </AbsoluteLayout>
+            </Border>
+            
+            <Border BackgroundColor="#f3f6fb" HeightRequest="100" StrokeShape="RoundRectangle 10" Margin="0,0,0,10">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2"/>
+                </Border.GestureRecognizers>
+                <AbsoluteLayout Padding="10">
+                    <Image Source="sales.png" HeightRequest="70"
+                           WidthRequest="70"
+                           AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,.5"/>
+                    <Label FontSize="Medium"  FontFamily="Cairo-Black" Text="المبيعات" TextColor="Black"
+                            AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,.5"/>
+                </AbsoluteLayout>
+            </Border>
+            
+            <Border BackgroundColor="#f3f6fb" HeightRequest="100" StrokeShape="RoundRectangle 10" Margin="0,0,0,10">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3"/>
+                </Border.GestureRecognizers>
+                <AbsoluteLayout Padding="10">
+                    <Image Source="salary.png" HeightRequest="70"
+                           WidthRequest="70"
+                           AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,.5"/>
+                    <Label FontSize="Medium"  FontFamily="Cairo-Black" Text="اموال بالخارج" TextColor="Black"
+                            AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,.5"/>
+                </AbsoluteLayout>
+            </Border>
+            
+            <Border BackgroundColor="#f3f6fb" HeightRequest="100" StrokeShape="RoundRectangle 10" Margin="0,0,0,10">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_4"/>
+                </Border.GestureRecognizers>
+                <AbsoluteLayout Padding="10">
+                    <Image Source="repeat.png" HeightRequest="70"
+                           WidthRequest="70"
+                           AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,.5"/>
+                    <Label FontSize="Medium"  FontFamily="Cairo-Black" Text="استرجاع" TextColor="Black" 
+                            AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,.5"/>
+                </AbsoluteLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

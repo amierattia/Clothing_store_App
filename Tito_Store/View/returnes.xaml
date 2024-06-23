@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tito_Store.View.returnes"
+             xmlns:viewModels="clr-namespace:Tito_Store.viewModels"
+             Title="المرتجع">
+
+    <ContentPage.BindingContext>
+        <viewModels:ReturnesViewModels/>
+    </ContentPage.BindingContext>
+    <Shell.TitleView>
+        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Primary}}"
+           Padding="0,0,20,0"
+           ColumnDefinitions="*">
+            <Label Text="المرتجع"
+                FontAttributes="Bold"
+                FontFamily="Cairo-Black"
+                FontSize="Large"
+                HorizontalTextAlignment="Center"
+                VerticalOptions="CenterAndExpand"
+                Grid.Column="1"/>
+        </Grid>
+    </Shell.TitleView>
+    
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="10"> 
+            
+            <BoxView  Color="LightGray" HeightRequest="2"  />
+
+            <!-- buttons -->
+            <HorizontalStackLayout Margin="0,10,0,0" HorizontalOptions="Center" Spacing="10">
+                <Button WidthRequest="100" Command="{Binding AddCommand}" Text="اضافه" FontFamily="Cairo-Medium"/>
+                <Button WidthRequest="100" Text="حذف" FontFamily="Cairo-Medium"/>
+                <Button WidthRequest="100" Text="عرض" FontFamily="Cairo-Medium"/>
+            </HorizontalStackLayout>
+            
+            <!-- inputs -->
+            <Frame>
+                <Entry FontFamily="Cairo-Medium" Placeholder="اسم المنتج " Text="{Binding ReturnName}"/>
+            </Frame>
+             <Frame>
+                <Entry Keyboard="Numeric" FontFamily="Cairo-Medium" Placeholder="الكميه" Text="{Binding QuantityReturned}"/>
+            </Frame>
+             <Frame>
+                <Entry Keyboard="Numeric" FontFamily="Cairo-Medium" Placeholder="حط ال id بس للمسح" Text="{Binding ProductId}"/>
+            </Frame>
+            
+            <!-- display data -->
+            <Grid Padding="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <CollectionView x:Name="GetAllDs" ItemsSource="{Binding ListOfReturn}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BackgroundColor="#f3f6fb" HeightRequest="100" StrokeShape="RoundRectangle 10" Margin="0,0,0,10">
+                                <VerticalStackLayout Padding="10">
+                                    <Label Text="{Binding ReturnId}"/>
+                                    <Label Text="{Binding ReturnName}"/>
+                                    <Label Text="{Binding QuantityReturned}"/>
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <ActivityIndicator x:Name="activityIndicator"
+                      IsRunning="{Binding IsBusy}"
+                      IsVisible="{Binding IsBusy}"
+                      Color="Blue"
+                      VerticalOptions="Center"
+                      HorizontalOptions="Center"
+                      Grid.Row="0" />
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

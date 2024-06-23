@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:Tito_Store.viewModels"
+              xmlns:datagrid="clr-namespace:Maui.DataGrid;assembly=Maui.DataGrid"
+
+             x:Class="Tito_Store.View.Orders">
+    <ContentPage.BindingContext>
+        <viewmodel:OrderViewModels/>
+    </ContentPage.BindingContext>
+
+    <Shell.TitleView>
+        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"
+        Padding="0,0,20,0"
+        ColumnDefinitions="*">
+            <Label Text="طلبيات"
+             FontAttributes="Bold"
+             FontFamily="Cairo-Black"
+             FontSize="Large"
+             TextColor="Black"
+             HorizontalTextAlignment="Center"
+             VerticalOptions="CenterAndExpand"
+             Grid.Column="1"/>
+        </Grid>
+    </Shell.TitleView>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="20">
+            <BoxView IsVisible="True" IsEnabled="True" Color="LightGray" HeightRequest="2"/>
+
+
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+                <Button Text="اضافه المنتج" FontFamily="Cairo-Black" Command="{Binding AddCommand}"/>
+                <Button Text="عرض كل المنتجات" FontFamily="Cairo-Black" Command="{Binding GetAllCommand}"/>
+                <Button Text="الحذف" FontFamily="Cairo-Black" Command="{Binding DeletCommand}"/>
+            </HorizontalStackLayout>
+            <VerticalStackLayout Padding="10" Spacing="10">
+                <Frame>
+                    <Entry Text="{Binding OrderName}" Placeholder="اسم المنتج" />
+                </Frame>
+
+                <Frame>
+                    <Entry Text="{Binding OrderQuntity}" Placeholder="الكميه" Keyboard="Numeric"/>
+                </Frame>
+                <Frame>
+                    <Entry Text="{Binding OrderId}" Placeholder="للحذف بس حط ال id" Keyboard="Numeric"/>
+                </Frame>
+
+            </VerticalStackLayout>
+
+
+
+
+
+
+
+
+
+            <Grid Padding="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <CollectionView x:Name="GetAllDs" ItemsSource="{Binding ListModels}"
+                  >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BackgroundColor="#f3f6fb" HeightRequest="100" StrokeShape="RoundRectangle 10" Margin="0,0,0,10">
+                                <VerticalStackLayout Padding="10">
+                                    <Label Text="{Binding Id}"/>
+                                    <Label Text="{Binding OrderName}"/>
+                                    <Label Text="{Binding OrderQuntity}"/>
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+
+                <ActivityIndicator x:Name="activityIndicator"
+             IsRunning="{Binding IsBusy}"
+             IsVisible="{Binding IsBusy}"
+             Color="Blue"
+             VerticalOptions="Center"
+             HorizontalOptions="Center"
+             Grid.Row="0" />
+            </Grid>
+        </VerticalStackLayout>
+
+    </ScrollView>
+</ContentPage>
